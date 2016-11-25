@@ -12,8 +12,8 @@ image::figures/shellshock-logo.png[]
 [incremental="true"]
  * Discovered on *Sept, 2014*.
  * a.k.a *Bashdoor*
- * Affects bash
- * Gives the ability to execute any shell command in a remote machine.
+ * Affects *Bash*
+ * Causes bash to unintentionally execute any shell command.
  * *National Institute of Standards & Technology* warned vulnerability was *10/10* interms of *serverity*, *impact* & *exploitability*.
 
 
@@ -23,7 +23,7 @@ image::figures/shellshock-logo.png[]
  * On *12th Sept. 2014*, Bash maintainer *Mr. Chet Ramey* is notified of the Bug by *Stephane Chazelas*, an open-source enthusiast.
  * Within hours *Chazelas* submits a patch fixing the bug.
  * Precautions taken before public announcement.
- * On *24th Sept. 2014* public announcement with bash updates
+ * Public announcement on *24th Sept. 2014* 
  * On *27th Sept. 2014*, *Michael Zalewski* from *Google* discovers other bash vulnerabilites and help fix them.
 
 == "Bash"ing!
@@ -33,7 +33,7 @@ image::figures/shellshock-logo.png[]
  * Security firm *Incapsula* noted 17,400 attacks on more than 1,800 web domains.
  * *CloudFare* tracking *1.5 million* attacks per day.
  * DDOS attacks on *Akamai Technologies*
- * Scanning of  *U.S Dept. of Defense*
+ * Scanning of systems in  *U.S Dept. of Defense*
 
 == Bash environment
 
@@ -47,25 +47,8 @@ $ bash
 -----------
 
  * `var` variable is not passed to the new bash instance.
-
-== Exporting the environment
-
- * `export` command
-
-[source,bash]
----------
-$ var=hello
-$ export var
-$ env
-...
-...
-var=hello
-...
-$ bash
----------
-
- * Variable passed to the new bash instance.
-
+ * `export` command allows passing variable to the spawned child process.
+ 
 == Bash function
 
 [source,bash]
@@ -73,35 +56,15 @@ $ bash
 $ foo () { echo "Hello World!"; }
 $ foo
 Hello World!
-$ bash
-$ foo
-bash: foo: command not found
 ---------
 
  * Bash allows passing functions as an environment variable.
-
-== Bash function export
-
-[source,bash]
----------
-$ foo () { echo 'Hello World!'; }
-$ export -f foo
-$ env
-...
-...
-foo=() {  echo 'Hello World!'
-}
-...
-...
-$ bash
-$ foo
-Hello World!
----------
-
-
+ * `export -f` allows passing functions to the spawned child process.
  * Bash *initializes `foo` as function* after parsing the special variable `foo`.
 
-== Bash function export as a variable
+== Alternate way to export a function
+
+ * Bash function can be exported as a variable
 
 [source,bash]
 -------------------------------------------
@@ -127,7 +90,7 @@ $ bash
 This is a Bug!
 -------------------------------------------
 
- * A command after the function definition is executed during *bash initialization*!
+ * A command concatenated after the function definition is executed during *bash initialization*!
 
 
 == An example: CGI-based web server
